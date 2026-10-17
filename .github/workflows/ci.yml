@@ -1,0 +1,60 @@
+name: Test and Publish
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: "0.13.1"
+      - name: Install locked dependencies
+        run: uv sync --frozen --extra dev --extra job
+      - name: Run tests
+        run: uv run --frozen pytest -q
+
+  build-and-push:
+    if: github.event_name == 'push'
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Log in to Azure Container Registry
+        uses: azure/docker-login@v2
+        with:
+          login-server: predixlabacr.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - name: Build immutable image
+        env:
+          IMAGE: predixlabacr.azurecr.io/predixlab-signals
+        run: |
+          docker build -t "$IMAGE:sha-${GITHUB_SHA}" .
+          docker push "$IMAGE:sha-${GITHUB_SHA}"
+      - name: Publish release aliases
+        env:
+          IMAGE: predixlabacr.azurecr.io/predixlab-signals
+        run: |
+          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+            docker tag "$IMAGE:sha-${GITHUB_SHA}" "$IMAGE:${GITHUB_REF_NAME}"
+            docker push "$IMAGE:${GITHUB_REF_NAME}"
+          elif [[ "$GITHUB_REF_NAME" == "main" ]]; then
+            docker tag "$IMAGE:sha-${GITHUB_SHA}" "$IMAGE:latest"
+            docker push "$IMAGE:latest"
+          fi

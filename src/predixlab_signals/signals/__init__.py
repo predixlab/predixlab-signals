@@ -1,0 +1,81 @@
+"""Recommendation layer: model output -> a short, actionable pick list."""
+
+from predixlab_signals.signals.scoring import (
+    SIGNAL_COLUMNS,
+    build_scores,
+    confidence_in_cross_section,
+    enrich_scores,
+    format_scores,
+    score_panel,
+)
+from predixlab_signals.signals.picks import (
+    EVENT_KINDS,
+    LONG,
+    PICK_COLUMNS,
+    DETECTION,
+    REVERSAL,
+    SHORT,
+    TREND,
+    extract_events,
+    format_picks,
+    rank_events,
+    select_picks,
+    summarise_picks,
+)
+from predixlab_signals.signals.models.pivot import (
+    BASE_BREAKOUT,
+    BOTTOM_TURN,
+    BUY_TURN,
+    NO_TURN,
+    SELL_TURN,
+    TOP_TURN,
+    TREND_BUY,
+    TurningPointConfig,
+    extract_turning_points,
+)
+from predixlab_signals.signals.registry import (
+    get_signal_model,
+    list_signal_models,
+    register_signal_model,
+)
+from predixlab_signals.signals.specs import (
+    EventDefinition,
+    SignalFilter,
+    SignalModelSpec,
+)
+
+__all__ = [
+    "build_scores",
+    "confidence_in_cross_section",
+    "enrich_scores",
+    "format_scores",
+    "SIGNAL_COLUMNS",
+    "score_panel",
+    "select_picks",
+    "extract_events",
+    "rank_events",
+    "summarise_picks",
+    "format_picks",
+    "PICK_COLUMNS",
+    "EVENT_KINDS",
+    "LONG",
+    "SHORT",
+    "REVERSAL",
+    "TREND",
+    "DETECTION",
+    "extract_turning_points",
+    "TurningPointConfig",
+    "BASE_BREAKOUT",
+    "BOTTOM_TURN",
+    "BUY_TURN",
+    "SELL_TURN",
+    "TOP_TURN",
+    "TREND_BUY",
+    "NO_TURN",
+    "EventDefinition",
+    "SignalFilter",
+    "SignalModelSpec",
+    "get_signal_model",
+    "list_signal_models",
+    "register_signal_model",
+]

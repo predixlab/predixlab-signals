@@ -1,0 +1,53 @@
+services:
+  predixlab-signals:
+    build: .
+    image: predixlab-signals:latest
+    container_name: predixlab-signals
+
+    # The shared PredixLab data tree. In Azure this is the same Azure File share
+    # the collector writes; locally point it at the collector's `data/` folder.
+    volumes:
+      - ./data:/data
+      # The job may write predictions and picks, but production models are
+      # immutable inputs and are over-mounted read-only.
+      - ./data/models:/data/models:ro
+
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PREDIXLAB_DATA=/data
+      - PIVOT_ARTIFACTS=artifacts
+      - PIVOT_MARKET=us
+      - PIVOT_HORIZON=10
+      - PIVOT_TAG=${PIVOT_TAG:-default}
+      - ALPHARANK_TAG=${ALPHARANK_TAG:-${PIVOT_TAG:-default}}
+      - MONGODB_URL=${MONGODB_URL:-mongodb://mongo:27017}
+      - DATABASE_NAME=${DATABASE_NAME:-predixlab}
+      - PIVOT_PICKS_COLLECTION=${PIVOT_PICKS_COLLECTION:-pivot_picks}
+      - ALPHARANK_COLLECTION=${ALPHARANK_COLLECTION:-alpharank}
+      - ALPHARANK_GENERATIONS_COLLECTION=${ALPHARANK_GENERATIONS_COLLECTION:-alpharank_generations}
+      - ALPHARANK_TOP_N=${ALPHARANK_TOP_N:-15}
+      - JOBS_COLLECTION=${JOBS_COLLECTION:-jobs}
+
+    depends_on:
+      - mongo
+
+    # Default: the scheduled pipeline. Use `--dry-run` to compute without
+    # publishing, or swap in a research command such as `train`.
+    command: ["python", "-m", "predixlab_signals", "daily"]
+
+  mongo:
+    image: mongo:7
+    container_name: predixlab-signals-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - pivot_mongo_data:/data/db
+
+volumes:
+  pivot_mongo_data:
+    driver: local
+
+networks:
+  default:
+    name: predixlab-network

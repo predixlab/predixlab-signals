@@ -1,0 +1,54 @@
+# Git files
+.git
+.gitignore
+
+# Python cache and build files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+.uvcache/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Documentation
+*.md
+!README.md
+docs/
+
+# Test files
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Docker files (avoid recursive copying)
+Dockerfile
+.dockerignore
+
+# Research artifacts: datasets, trained models and reports are mounted from the
+# shared data share at runtime, never baked into the image.
+artifacts/
+
+# Environment files (passed as environment variables instead)
+.env.*

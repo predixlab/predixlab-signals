@@ -1,0 +1,18 @@
+"""Event names emitted by the pivot signal model."""
+
+BUY_TURN = "BUY_TURN"
+SELL_TURN = "SELL_TURN"
+BOTTOM_TURN = "BOTTOM_TURN"
+TOP_TURN = "TOP_TURN"
+TREND_BUY = "TREND_BUY"
+BASE_BREAKOUT = "BASE_BREAKOUT"
+NO_TURN = "NONE"
+
+PIVOT_EVENTS = (
+    BOTTOM_TURN,
+    BUY_TURN,
+    SELL_TURN,
+    TOP_TURN,
+    TREND_BUY,
+    BASE_BREAKOUT,
+)

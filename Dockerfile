@@ -2,7 +2,7 @@
 FROM python:3.12-slim
 
 LABEL maintainer="predixlab-signals"
-LABEL description="Swing-point (local high/low) prediction producing daily buy/sell advice"
+LABEL description="Swing-point (local high/low) model producing daily signals (information only, not investment advice)"
 LABEL version="0.1.0"
 
 ENV PYTHONUNBUFFERED=1

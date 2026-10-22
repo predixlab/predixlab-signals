@@ -6,9 +6,11 @@ project licensing is in [LICENSE](../LICENSE).
 
 ## Role
 
+Data collection runs as part of the hosted service and isn't in the public repositories.
+
 PredixLab Signals connects PredixLab's market-data collection and signal-consumption layers:
 
-- Upstream: trading calendars, constituent history, and normalized per-symbol CSV files produced by the data collection component (`predixlab-collector`). This component is not publicly available at this time. See the [input data contract](data-contract.md) for the required layout.
+- Upstream: trading calendars, constituent history, and normalized per-symbol CSV files. See the [input data contract](data-contract.md) for the required layout.
 - This project: datasets, training, out-of-sample evaluation, signal generation, and publishing.
 - Downstream: daily CSV files or the MongoDB `pivot_picks` collection.
 - Excluded: price collection, collection scheduling, APIs, and trade execution.

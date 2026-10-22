@@ -4,7 +4,9 @@
 
 PredixLab Signals is PredixLab's equity turning-signal research and publishing component. It consumes trading calendars, constituent history, and normalized per-symbol CSV files, builds training data, performs walk-forward validation, trains LightGBM models, and converts daily scores into sparse events. It neither collects prices nor provides a public API.
 
-The data collection component (`predixlab-collector`) produces these upstream inputs. It is not publicly available at this time.
+The signal, backtest, API and dashboard code is open source (Apache-2.0).
+
+Data collection runs as part of the hosted service and isn't in the public repositories.
 
 The publishing layer is model-extensible: each model declares its own scored
 panel contract, event extractor, event vocabulary, and signal filters. The
@@ -20,7 +22,7 @@ portfolio; it does not consume Pivot labels, events, or outputs.
 ## Role in PredixLab
 
 ```text
-Data collection (not publicly available at this time)
+Data collection (hosted service)
   └─ normalized CSV, trading calendar, constituent history
        └─ PredixLab Signals
             ├─ research: dataset → walk-forward training → evaluation/backtest/report

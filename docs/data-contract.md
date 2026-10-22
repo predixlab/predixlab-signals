@@ -2,8 +2,8 @@
 
 ## Input data tree
 
-The data collection component produces trading calendars, constituent history,
-and normalized per-symbol CSV files. It is not publicly available at this time.
+Data collection runs as part of the hosted service and isn't in the public repositories.
+It produces trading calendars, constituent history, and normalized per-symbol CSV files.
 Signals requires these inputs in the layout below; it does not collect them.
 
 Training reads the full historical tree from `PREDIXLAB_TRAINING_DATA`

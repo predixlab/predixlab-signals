@@ -9,7 +9,8 @@
 - MongoDB for non-dry-run publishing
 - Azure Communication Services Email only when email is enabled
 
-The data collection component that produces the required input tree is not publicly available at this time. Signals does not collect these inputs.
+Data collection runs as part of the hosted service and isn't in the public repositories.
+Signals does not collect these inputs.
 
 For research and tests:
 

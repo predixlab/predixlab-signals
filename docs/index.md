@@ -29,7 +29,7 @@ Approved production model + Collector data → daily score → turning event
 
 | Term | Meaning |
 | --- | --- |
-| State advice | Persistent daily classification for every eligible symbol: `STRONG_BUY`, `BUY`, `HOLD`, `SELL`, or `STRONG_SELL` |
+| Directional state | Persistent daily directional classification for every eligible symbol: `STRONG_BUY`, `BUY`, `HOLD`, `SELL`, or `STRONG_SELL`; see [state meanings](signals-gates-picks.md#a-state-is-not-an-event) |
 | Turning event | Sparse event after model, price-context, and temporal rules |
 | Published event (pick) | Event passing publication rules and entering CSV/MongoDB; not a daily Top-N stock list |
 | Candidate model | Model written by `train` to `PIVOT_ARTIFACTS`, pending evaluation |

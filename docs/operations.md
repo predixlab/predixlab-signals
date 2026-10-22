@@ -35,7 +35,7 @@ The job:
 
 1. checks whether yesterday exists in the selected market's calendar in automatic mode;
 2. locks the target to yesterday or the explicit `--end-date`;
-3. validates Collector completeness and freshness, then builds labels-free inference features;
+3. validates input completeness and freshness, then builds labels-free inference features;
 4. loads and validates the production model;
 5. scores the trailing panel and warms temporal event rules;
 6. extracts events from the complete history window and selects target-date events;
@@ -140,7 +140,7 @@ Market, horizon, tag, and per-side cap come from environment variables. No-event
 ## Run checklist
 
 1. `info` shows correct data, calendar, constituent, and model paths.
-2. Collector data meets the contract and contains the target date.
+2. Input data meets the [input data contract](data-contract.md) and contains the target date.
 3. `daily --dry-run` succeeds with a plausible target date and scored-symbol count.
 4. Both predictions and picks CSV files are at expected paths.
 5. The production-model directory is read-only to the job identity.

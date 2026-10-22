@@ -1,6 +1,10 @@
 # Input data contract
 
-## Collector data tree
+## Input data tree
+
+Data collection runs as part of the hosted service and isn't in the public repositories.
+It produces trading calendars, constituent history, and normalized per-symbol CSV files.
+Signals requires these inputs in the layout below; it does not collect them.
 
 Training reads the full historical tree from `PREDIXLAB_TRAINING_DATA`
 (`data/` below the repository by default). Daily inference reads the clean tree
@@ -26,12 +30,12 @@ The US benchmark is `^GSPC`; the China benchmark is `SH000300`. Files beginning 
 
 ## Normalized-price fields
 
-The minimum recognized fields are `date` and `close`. Full datasets, turning rules, and backtests also require `open`, `high`, and `low`; normal Collector output includes `symbol`, `volume`, and `factor`.
+The minimum recognized fields are `date` and `close`. Full datasets, turning rules, and backtests also require `open`, `high`, and `low`; normal upstream output includes `symbol`, `volume`, and `factor`.
 
 | Field | Meaning |
 | --- | --- |
 | `date` | Parseable trading date |
-| `open/high/low/close` | Collector-normalized OHLC |
+| `open/high/low/close` | Normalized OHLC |
 | `volume` | Volume corresponding to normalized prices |
 | `factor` | Factor used to restore trade prices and raw volume |
 

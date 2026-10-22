@@ -5,9 +5,12 @@
 - Python 3.11+ (containers and CI use Python 3.12)
 - `uv` (recommended) or `pip`
 - An OpenMP runtime for LightGBM (`libgomp1` on Debian/Ubuntu)
-- A Collector data tree meeting the [input data contract](data-contract.md)
+- An input data tree meeting the [input data contract](data-contract.md)
 - MongoDB for non-dry-run publishing
 - Azure Communication Services Email only when email is enabled
+
+Data collection runs as part of the hosted service and isn't in the public repositories.
+Signals does not collect these inputs.
 
 For research and tests:
 
@@ -54,7 +57,7 @@ Never commit real credentials in `.env`.
 
 | Variable | Unset default | Purpose |
 | --- | --- | --- |
-| `PREDIXLAB_TRAINING_DATA` | `data` below the repository root | Full historical Collector input used for dataset building and model training |
+| `PREDIXLAB_TRAINING_DATA` | `data` below the repository root | Full historical input used for dataset building and model training |
 | `PREDIXLAB_DATA` | `~/.predixlab` | Clean inference input, production models, and persistent daily output |
 | `PIVOT_ARTIFACTS` | `artifacts` below repository root | Rebuildable datasets, candidate models, walk-forward predictions, and research reports |
 

@@ -139,7 +139,7 @@ filter. `TREND_BUY` and `BASE_BREAKOUT` are directional only.
 
 ## Interpretation
 
-Ranking, probability calibration, event lift, and after-cost return answer different questions. Review stability by fold, date, and direction; compare gross and net results; and inspect turnover, exposure, capacity, and event gaps. Daily data cannot recover intraday target/stop order, so stop-first is deliberately conservative. Backtests omit market impact, capacity, borrow availability, and taxes.
+Ranking, probability calibration, event lift, and after-cost return answer different questions. Review stability by fold, date, and direction; compare gross and net results; and inspect turnover, exposure, capacity, and event gaps. Daily data cannot recover intraday target/stop order, so same-bar target/stop touches are resolved stop-first. Backtests omit market impact, capacity, borrow availability, and taxes.
 
 ## Related documents
 

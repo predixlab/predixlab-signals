@@ -41,7 +41,7 @@ privately. Do not include live credentials or personal information in reports.
 
 ## Method limitations
 
-- Daily OHLC cannot reveal intraday paths; backtests use conservative stop-first handling.
+- Daily OHLC cannot reveal intraday paths; backtests resolve same-bar target/stop touches stop-first.
 - Constituent-history quality depends on instrument files; `--all-history` explicitly introduces selection bias.
 - Future-hold and zigzag labels describe price geometry, not necessarily profitable trades.
 - Event-gate thresholds can become ineffective as market structure changes.

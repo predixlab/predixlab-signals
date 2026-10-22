@@ -29,13 +29,17 @@ conditions to the pivot extractor or reuse pivot filters.
 
 ## A state is not an event
 
-The model produces a continuous `score` for each eligible symbol and trading day, then calibrates it into persistent states:
+The model produces a continuous `score` for each eligible symbol and trading day, then calibrates it into persistent directional states. The literal code values have these information-only meanings:
 
-```text
-STRONG_BUY / BUY / HOLD / SELL / STRONG_SELL
-```
+| Code value | Directional meaning |
+| --- | --- |
+| `STRONG_BUY` | Strongly bullish |
+| `BUY` | Bullish |
+| `HOLD` | Neutral |
+| `SELL` | Bearish |
+| `STRONG_SELL` | Strongly bearish |
 
-States reflect the current cross-sectional direction and amplitude assessment. Events are sparser because they require return-weighted Pivot strength, price location, reversal confirmation, cross-sectional and own-history gates, and duplicate suppression.
+States reflect the current cross-sectional direction and amplitude assessment; they are not recommendations to buy, hold, or sell and are not investment advice. Events are sparser because they require return-weighted Pivot strength, price location, reversal confirmation, cross-sectional and own-history gates, and duplicate suppression.
 
 | `event` | `direction` | `kind` | User meaning |
 | --- | --- | --- | --- |

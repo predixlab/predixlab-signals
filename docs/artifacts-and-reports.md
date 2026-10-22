@@ -4,7 +4,7 @@
 
 | Root | Nature | Contents |
 | --- | --- | --- |
-| `PREDIXLAB_TRAINING_DATA` | Local, historical, research input | Full Collector history used to build training datasets |
+| `PREDIXLAB_TRAINING_DATA` | Local, historical, research input | Full input history used to build training datasets |
 | `PREDIXLAB_DATA` | Clean, persistent, production | Inference input, production models, daily predictions, and events |
 | `PIVOT_ARTIFACTS` | Rebuildable, research | Datasets, candidate models, walk-forward predictions, evaluation, backtests, and reports |
 

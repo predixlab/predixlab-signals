@@ -54,7 +54,7 @@ privately. Do not include live credentials or personal information in reports.
 
 - Version `0.1.0` and its interfaces/storage formats remain pre-1.0.
 - Production-model promotion is a manual process outside the CLI.
-- Daily data validation relies on the Collector calendar and membership
+- Daily data validation relies on the input trading calendar and membership
   metadata. OHLCV freshness checks detect repeated bars, not every possible
   vendor error or a guarantee that live prices are economically correct.
 - `backfill-picks` receives market, horizon, and tag only through environment variables.

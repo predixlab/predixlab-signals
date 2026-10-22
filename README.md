@@ -2,7 +2,9 @@
 
 [Contributing](CONTRIBUTING.md) | [Security](SECURITY.md) | [Apache-2.0](LICENSE)
 
-PredixLab Signals is PredixLab's equity turning-signal research and publishing component. It consumes normalized prices and constituent history from `predixlab-collector`, builds training data, performs walk-forward validation, trains LightGBM models, and converts daily scores into sparse events. It neither collects prices nor provides a public API.
+PredixLab Signals is PredixLab's equity turning-signal research and publishing component. It consumes trading calendars, constituent history, and normalized per-symbol CSV files, builds training data, performs walk-forward validation, trains LightGBM models, and converts daily scores into sparse events. It neither collects prices nor provides a public API.
+
+The data collection component (`predixlab-collector`) produces these upstream inputs. It is not publicly available at this time.
 
 The publishing layer is model-extensible: each model declares its own scored
 panel contract, event extractor, event vocabulary, and signal filters. The
@@ -18,7 +20,7 @@ portfolio; it does not consume Pivot labels, events, or outputs.
 ## Role in PredixLab
 
 ```text
-predixlab-collector
+Data collection (not publicly available at this time)
   └─ normalized CSV, trading calendar, constituent history
        └─ PredixLab Signals
             ├─ research: dataset → walk-forward training → evaluation/backtest/report
@@ -39,8 +41,8 @@ uv run predixlab-signals --help
 uv run pytest -q
 ```
 
-With the full historical [Collector data tree](docs/data-contract.md) under
-`data/` (or `PREDIXLAB_TRAINING_DATA`):
+The following commands require a full historical [input data tree](docs/data-contract.md),
+supplied separately under `data/` (or `PREDIXLAB_TRAINING_DATA`):
 
 ```bash
 export PREDIXLAB_TRAINING_DATA=/path/to/full-history

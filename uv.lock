@@ -14,20 +14,6 @@ resolution-markers = [
 ]
 
 [[package]]
-name = "azure-communication-email"
-version = "1.1.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "azure-core" },
-    { name = "isodate" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/97/de/f71191ead5e778a7d8939744977a049f796f6fb6549847c667fad373605e/azure_communication_email-1.1.0.tar.gz", hash = "sha256:6a4af8281024327c3ab18a4996919069a99a69aad3a19c40f7852a6682493327", size = 55546, upload-time = "2025-10-17T20:30:23.349Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/97/fe/9bd1028853c4b351c756ba4acc39ef5b5914a3452ebe2df0b8ddd6051114/azure_communication_email-1.1.0-py3-none-any.whl", hash = "sha256:9212153f21cf7e68734c32ebfe8702b43398bd01df2dddb0ca52cd5a8bbd5024", size = 64170, upload-time = "2025-10-17T20:30:24.829Z" },
-]
-
-[[package]]
 name = "azure-core"
 version = "1.41.0"
 source = { registry = "https://pypi.org/simple" }
@@ -622,15 +608,14 @@ dev = [
     { name = "pytest" },
 ]
 job = [
-    { name = "azure-communication-email" },
     { name = "azure-storage-queue" },
     { name = "loguru" },
     { name = "pymongo" },
+    { name = "resend" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "azure-communication-email", marker = "extra == 'job'", specifier = ">=1.0" },
     { name = "azure-storage-queue", marker = "extra == 'job'", specifier = ">=12.12" },
     { name = "lightgbm", specifier = ">=4.0" },
     { name = "loguru", marker = "extra == 'job'", specifier = ">=0.7" },
@@ -639,6 +624,7 @@ requires-dist = [
     { name = "pyarrow", specifier = ">=14.0" },
     { name = "pymongo", marker = "extra == 'job'", specifier = ">=4.10" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0" },
+    { name = "resend", marker = "extra == 'job'", specifier = ">=2.52.0" },
     { name = "scikit-learn", specifier = ">=1.4" },
 ]
 provides-extras = ["dev", "job"]
@@ -826,6 +812,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/ac/c3/e2a2b89f2d3e2179abd6d00ebd70bff6273f37fb3e0cc209f48b39d00cbf/requests-2.34.2.tar.gz", hash = "sha256:f288924cae4e29463698d6d60bc6a4da69c89185ad1e0bcc4104f584e960b9ed", size = 142856, upload-time = "2026-05-14T19:25:27.735Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl", hash = "sha256:2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0", size = 73075, upload-time = "2026-05-14T19:25:26.443Z" },
+]
+
+[[package]]
+name = "resend"
+version = "2.53.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "requests" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/33/08/e6d56e1f16a0d910e9462007e475985c34eb88b1dc0c41df0f1035b08e01/resend-2.53.2.tar.gz", hash = "sha256:4904f79fe129344edb612beb5653b5755dfe63c73ea5d0c96842d2869da36e28", size = 86840, upload-time = "2026-11-10T15:26:41.169Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cb/36/8cbf990b7b7a66ad5d8aa7da7f0be1ebab665a55f7de529c6052f152b8a8/resend-2.53.2-py3-none-any.whl", hash = "sha256:e0416b6559b972a5b877acf21e3bbd4b59098f19093a72ecc26e40407d19f452", size = 127104, upload-time = "2026-11-10T15:26:39.857Z" },
 ]
 
 [[package]]

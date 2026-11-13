@@ -26,7 +26,7 @@ dev = ["pytest>=8.0"]
 job = [
     "pymongo>=4.10",
     "loguru>=0.7",
-    "azure-communication-email>=1.0",
+    "resend>=2.52.0",
     "azure-storage-queue>=12.12",
 ]
 

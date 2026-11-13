@@ -5,7 +5,7 @@ covers the whole platform: same subject convention, same table, same footer
 position. The pivot-specific part is the action histogram and the top picks,
 because "the job succeeded" is not the interesting part of a signal run.
 
-``azure-communication-email`` is imported lazily: an unconfigured or
+``resend`` is imported lazily: an unconfigured or
 driver-less environment must degrade to "no email", never to a crash.
 """
 
@@ -149,20 +149,22 @@ def send_email_notification(
     """Send the run summary. Returns ``False`` when email is not configured."""
     settings = settings or load_settings()
     if not settings.email_configured:
-        _log_info("Azure Communication Service not configured, skipping email notification")
+        _log_info("Resend not configured, skipping email notification")
         return False
 
     subject, html_body = build_email_body(job_status)
     try:
-        from azure.communication.email import EmailClient
+        import resend
 
-        client = EmailClient.from_connection_string(settings.acs_connection_string)
-        message = {
-            "senderAddress": settings.acs_sender_email,
-            "recipients": {"to": [{"address": address} for address in settings.recipients]},
-            "content": {"subject": subject, "html": html_body},
-        }
-        result = client.begin_send(message).result()
+        resend.api_key = settings.resend_api_key
+        result = resend.Emails.send(
+            {
+                "from": settings.email_from or settings.acs_sender_email,
+                "to": settings.recipients,
+                "subject": subject,
+                "html": html_body,
+            }
+        )
         _log_info(f"Email notification sent. Message ID: {result['id']}")
         return True
     except Exception as exc:

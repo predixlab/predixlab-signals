@@ -34,7 +34,7 @@ privately. Do not include live credentials or personal information in reports.
 
 - Model bundles contain pickle. SHA-256 verifies integrity but cannot make an untrusted pickle safe.
 - Install only models from trusted training pipelines and make the production-model directory read-only to the job.
-- Never put MongoDB or ACS credentials in the repository, logs, or research artifacts.
+- Never put MongoDB credentials or Resend API keys in the repository, logs, or research artifacts.
 - Grant MongoDB credentials only required database and collection privileges.
 - Record source revision, data metadata, bundle checksums, and approver/decision for promotion.
 - `.env.example` is a placeholder template, not a production-secret source.

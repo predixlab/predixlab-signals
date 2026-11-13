@@ -347,6 +347,8 @@ def _settings(**overrides) -> Settings:
         lookback_sessions=250,
         max_per_side=0,
         require_trading_day=False,
+        resend_api_key="",
+        email_from="",
         acs_connection_string="",
         acs_sender_email="",
         acs_to_emails="",

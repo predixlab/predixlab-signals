@@ -136,6 +136,9 @@ class Settings:
     )
 
     # -- notifications -----------------------------------------------------
+    resend_api_key: str = field(default_factory=lambda: _env("RESEND_API_KEY"))
+    email_from: str = field(default_factory=lambda: _env("EMAIL_FROM"))
+    #: Deprecated compatibility field; unused by the Resend notification path.
     acs_connection_string: str = field(default_factory=lambda: _env("ACS_CONNECTION_STRING"))
     acs_sender_email: str = field(default_factory=lambda: _env("ACS_SENDER_EMAIL"))
     acs_to_emails: str = field(default_factory=lambda: _env("ACS_TO_EMAILS"))
@@ -173,7 +176,11 @@ class Settings:
 
     @property
     def email_configured(self) -> bool:
-        return bool(self.acs_connection_string and self.acs_sender_email and self.recipients)
+        return bool(
+            self.resend_api_key
+            and (self.email_from or self.acs_sender_email)
+            and self.recipients
+        )
 
     def __post_init__(self) -> None:
         if not 0 <= self.max_bad_data_ratio < 1:

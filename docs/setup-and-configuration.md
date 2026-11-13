@@ -7,7 +7,7 @@
 - An OpenMP runtime for LightGBM (`libgomp1` on Debian/Ubuntu)
 - An input data tree meeting the [input data contract](data-contract.md)
 - MongoDB for non-dry-run publishing
-- Azure Communication Services Email only when email is enabled
+- Resend only when email is enabled
 
 Data collection runs as part of the hosted service and isn't in the public repositories.
 Signals does not collect these inputs.
@@ -105,11 +105,13 @@ and exclusion semantics.
 | `ALPHARANK_GENERATIONS_COLLECTION` | `alpharank_generations` | AlphaRank session manifest collection |
 | `ALPHARANK_TOP_N` | `15` | Number of deterministic AlphaRank rows per latest session |
 | `JOBS_COLLECTION` | `jobs` | Job-status collection |
-| `ACS_CONNECTION_STRING` | unset | ACS connection string |
-| `ACS_SENDER_EMAIL` | unset | Verified sender |
+| `RESEND_API_KEY` | unset | Resend API key; required to enable email |
+| `EMAIL_FROM` | unset | Sender verified in Resend; falls back to `ACS_SENDER_EMAIL` when empty |
+| `ACS_SENDER_EMAIL` | unset | Legacy sender setting used only as the `EMAIL_FROM` fallback; must be verified in Resend |
 | `ACS_TO_EMAILS` | unset | Comma-separated recipients |
+| `ACS_CONNECTION_STRING` | unset | Deprecated and unused; no longer required for email |
 
-Email is enabled only when all three ACS settings are non-empty and there is at least one recipient. Inject database and ACS credentials with a secret manager.
+Email is enabled only when `RESEND_API_KEY`, a sender (`EMAIL_FROM` or fallback `ACS_SENDER_EMAIL`), and at least one recipient in `ACS_TO_EMAILS` are configured. Notifications use Resend, not ACS; `ACS_CONNECTION_STRING` does not gate or participate in sending. Inject database credentials and the Resend API key with a secret manager.
 
 ## Command overview
 
@@ -146,7 +148,7 @@ Compose mounts `./data` at `/data` and mounts `./data/models` read-only. Its exa
 docker compose run --rm predixlab-signals python -m predixlab_signals daily --dry-run
 ```
 
-Compose passes only some variables. Add ACS, tag, lookback, and other overrides explicitly in deployment configuration; `.env.example` is not injected automatically in full.
+Compose passes only some variables. Add Resend email settings, tag, lookback, and other overrides explicitly in deployment configuration; `.env.example` is not injected automatically in full.
 
 ## Related documents
 

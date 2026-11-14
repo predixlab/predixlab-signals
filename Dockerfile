@@ -1,5 +1,5 @@
 # Use Python 3.12 slim image as base
-FROM python:3.12-slim
+FROM python:3.15-slim
 
 LABEL maintainer="predixlab-signals"
 LABEL description="Swing-point (local high/low) model producing daily signals (information only, not investment advice)"
